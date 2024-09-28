@@ -24,15 +24,15 @@ var mockLoginDetails = map[string]LoginDetails{
 var mockNotes = map[string]NoteDetails{
 	"first": {
 		Username: "first",
-		Note:     "first first",
+		Notes:    []string{"first note", "another first note"},
 	},
 	"second": {
 		Username: "second",
-		Note:     "second second",
+		Notes:    []string{"second note", "another second note"},
 	},
 	"third": {
 		Username: "third",
-		Note:     "third third",
+		Notes:    []string{"third note", "another third note"},
 	},
 }
 

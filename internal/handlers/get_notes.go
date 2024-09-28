@@ -41,7 +41,7 @@ func GetNotes(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var resp = api.UserNotesResponse{
-		Notes: (*tokenDetails).Note,
+		Notes: (*tokenDetails).Notes,
 		Code:  http.StatusOK,
 	}
 

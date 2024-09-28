@@ -4,12 +4,12 @@ import (
 	"errors"
 	"net/http"
 
-	"githib.com/MouraJr/firstgoapi/internal/tools"
 	"github.com/MouraJr/firstgoapi/api"
+	"github.com/MouraJr/firstgoapi/internal/tools"
 	log "github.com/sirupsen/logrus"
 )
 
-var UnAuthorizedError = errors.New("Invalid credentials")
+var ErrUnAuthorized = errors.New("Invalid credentials")
 
 func Authorization(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -19,8 +19,8 @@ func Authorization(next http.Handler) http.Handler {
 		var err error
 
 		if username == "" || token == "" {
-			log.Error(UnAuthorizedError)
-			api.RequestErrorHandler(w, r, UnAuthorizedError)
+			log.Error(ErrUnAuthorized)
+			api.RequestErrorHandler(w, r, ErrUnAuthorized)
 			return
 		}
 
@@ -35,8 +35,8 @@ func Authorization(next http.Handler) http.Handler {
 		loginDetails = (*database).GetUserLoginDetails(username)
 
 		if (loginDetails == nil) || (token != (*loginDetails).AuthToken) {
-			log.Eror(UnAuthorizedError)
-			api.RequestErrorHandler(w, r, UnAuthorizedError)
+			log.Error(ErrUnAuthorized)
+			api.RequestErrorHandler(w, r, ErrUnAuthorized)
 			return
 		}
 

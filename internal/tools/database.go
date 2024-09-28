@@ -11,15 +11,15 @@ type LoginDetails struct {
 
 type NoteDetails struct {
 	Username string
-	Note     string
+	Notes    []string
 }
 
 type DatabaseInterface interface {
 	GetUserLoginDetails(username string) *LoginDetails
-	GetUserNotes(username string) []string
+	GetUserNotes(username string) *NoteDetails
 	SetupDatabase() error
-	AddNote(username string, note string) error
-	RemoveNote(username string, note string) error
+	// AddNote(username string, note string) error
+	// RemoveNote(username string, note string) error
 }
 
 func NewDatabase() (*DatabaseInterface, error) {
